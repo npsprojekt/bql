@@ -43,7 +43,20 @@ min="0" max="15"></p>
 <input type="range"
 min="0" max="15"></p>
 
-<script>
+<button id="13" class="led">Toggle Pin 13</button> <!-- button for pin 13 -->
+	
+	<script src="jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(".led").click(function(){
+				var p = $(this).attr('id'); // get id value (i.e. pin13, pin12, or pin11)
+				// send HTTP GET request to the IP address with the parameter "pin" and value "p", then execute the function
+				$.get("http://192.168.4.1:80/", {pin:p}); // execute get request
+			});
+		});
+	</script>
+	
+<!-- <script>
 var x;
 var y;
 x='Platno_gor';
@@ -56,7 +69,7 @@ function PlatnoDol() {
   document.write(y);
  }
 	
-</script>
+</script> -->
 	
 </body>
 </html>
