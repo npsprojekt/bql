@@ -1,24 +1,97 @@
-﻿<html>
+<html>
 	<head>
-		<title>ESP8266 LED Control</title>
+		<title>BQ_LAB control</title>
 	</head>
 	<body>
+	<h2 style="text-align:center;">Platno:</h2>
+	<p  style="text-align:center;">
+	<button id="PLGOR" class="led">GOR</button> 
+	<button id="PLDOL" class="led">DOL</button></p> 
 	
-	<!-- in the <button> tags below the ID attribute is the value sent to the arduino -->
+	<h2 style="text-align:center;">Rolete:</h2>
+	<p  style="text-align:center;"><b>LEVO:</b>
 	
-	<button id="11" class="led">Toggle Pin 11</button> <!-- button for pin 11 -->
-	<button id="12" class="led">Toggle Pin 12</button> <!-- button for pin 12 -->
-	<button id="13" class="led">Toggle Pin 13</button> <!-- button for pin 13 -->
+	<button id="RLGOR" class="led">GOR</button> 
+	<button id="RLDOL" class="led">DOL</button></p>
+	
+	<p style="text-align:center;"><b>DESNO:</b>
+	
+	<button id="RDGOR" class="led">GOR</button>
+	<button id="RDDOL" class="led">DOL</button></p> 
+	
+	<!-- under construction//////////////////////////////////////-->
+	
+	<h2 style="text-align:center;">Klima:</h2>
+	<form style="text-align:center;">Zeljenja temperatura:<br>
+    <input type="number"
+    name:"temp" min="10" max="50" class="entry" id="KLIMA">
+
+    <!-- <input type="submit" value="POSLJI"> -->
+	</form>
+	<!-- ///////////////////////////////////////////////////// -->
 		
+	<h2 style="text-align:center;">Luci:</h2>
+
+		
+	<p  style="text-align:center;"><b>MIZA:</b><input type="range" min="0" max="15" value="7" class="slider" id="MIZAA"></p>
+	<p style="text-align:center;">Jakost luci: <span id="jak_miza"></span></p>
+		
+	
+	<script>
+	var slider = document.getElementById("MIZAA");
+	var output = document.getElementById("jak_miza");
+	output.innerHTML = slider.value;
+	
+	slider.oninput = function() {
+	output.innerHTML = this .value;
+	}
+	</script>
+	
+	<p  style="text-align:center;"><b>TABLA:</b><input type="range" min="0" max="15" value="7" class="slider" id="TABLA"></p>
+	<p style="text-align:center;">Jakost luci: <span id="jak_tabla"></span></p>
+		
+	
+	<script>
+	var slider = document.getElementById("TABLA");
+	var tab = document.getElementById("jak_tabla");
+	tab.innerHTML = slider.value;
+	
+	slider.oninput = function() {
+	tab.innerHTML = this .value;
+	} 
+	</script> 
+	
 	<script src="jquery.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$(".led").click(function(){
 				var p = $(this).attr('id'); // get id value (i.e. pin13, pin12, or pin11)
 				// send HTTP GET request to the IP address with the parameter "pin" and value "p", then execute the function
-				$.get("http://164.8.114.74:80/", {pin:p}); // execute get request
+				$.get("http://192.168.4.1:80/", {p}); // execute get request
 			});
 		});
+		
+		
+		$(document).ready(function(){
+			$(".slider").click(function(){
+				var p = $(this).attr('id'); // get id value (i.e. pin13, pin12, or pin11)
+				var x = this .value;
+				// send HTTP GET request to the IP address with the parameter "pin" and value "p", then execute the function
+				$.get("http://192.168.4.1:80/", {p,x}); // execute get request
+			});
+		});
+		
+       // under construction////////////////////////////////////////////////////////////////////////////////////////////////////
+		$(document).ready(function(){
+			$(".entry").click(function(){
+				var p = $(this).attr('id'); // get id value (i.e. pin13, pin12, or pin11)
+				
+				// send HTTP GET request to the IP address with the parameter "pin" and value "p", then execute the function
+				$.get("http://192.168.4.1:80/", {p}); // execute get request
+			});
+		});
+		
 	</script>
+	
 	</body>
 </html>
