@@ -22,12 +22,17 @@
 	<!-- under construction//////////////////////////////////////-->
 	
 	<h2 style="text-align:center;">Klima:</h2>
-	<form style="text-align:center;">Zeljenja temperatura:<br>
-    <input type="number"
-    name:"temp" min="10" max="50" class="entry" id="KLIMA">
-
-    <!-- <input type="submit" value="POSLJI"> -->
-	</form>
+	
+	<input type="number" id="myNumber" value="">
+	<button onclick="myFunction()">Try it</button>
+	<p id="KLIMA" class="entry"></p>
+    
+	<script>
+	function myFunction() {
+	var temp = document.getElementById("myNumber").value;
+	document.getElementById("KLIMA").innerHTML = temp;
+	}
+	</script>
 	<!-- ///////////////////////////////////////////////////// -->
 		
 	<h2 style="text-align:center;">Luci:</h2>
