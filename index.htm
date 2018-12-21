@@ -5,45 +5,39 @@
 	<body>
 	<h2 style="text-align:center;">Platno:</h2>
 	<p  style="text-align:center;">
-	<button id="PLGOR" class="led">GOR</button> 
-	<button id="PLDOL" class="led">DOL</button></p> 
+	<button id="P_GOR" class="led">GOR</button> 
+	<button id="P_DOL" class="led">DOL</button></p> 
 	
 	<h2 style="text-align:center;">Rolete:</h2>
 	<p  style="text-align:center;"><b>LEVO:</b>
 	
-	<button id="RLGOR" class="led">GOR</button> 
-	<button id="RLDOL" class="led">DOL</button></p>
+	<button id="RL_GOR" class="led">GOR</button> 
+	<button id="RL_DOL" class="led">DOL</button></p>
 	
 	<p style="text-align:center;"><b>DESNO:</b>
 	
-	<button id="RDGOR" class="led">GOR</button>
-	<button id="RDDOL" class="led">DOL</button></p> 
+	<button id="RD_GOR" class="led">GOR</button>
+	<button id="RD_DOL" class="led">DOL</button></p> 
 	
-	<!-- under construction//////////////////////////////////////
-	
-	<h2 style="text-align:center;">Klima:</h2>
-	
-	<input type="number" id="myNumber" value="">
-	<button onclick="myFunction()">Try it</button>
-	<p id="KLIMA" class="entry"></p>
-    
-	<script>
-	function myFunction() {
-	var temp = document.getElementById("myNumber").value;
-	document.getElementById("KLIMA").innerHTML = temp;
-	}
-	</script>
-	 ///////////////////////////////////////////////////// -->
 		
+	<h2 style="text-align:center;">Klima:</h2>
+	<form style="text-align:center;">Zeljenja temperatura:<br>
+    <input type="number"
+    name:"temp" min="10" max="50">
+
+    <input type="submit"
+	value="POSLJI">
+	</form>
+	
 	<h2 style="text-align:center;">Luci:</h2>
 
 		
-	<p  style="text-align:center;"><b>MIZA:</b><input type="range" min="0" max="15" value="7" class="slider" id="MIZAA"></p>
+	<p  style="text-align:center;"><b>MIZA:</b><input type="range" min="0" max="15" value="7" class="slider" id="miza"></p>
 	<p style="text-align:center;">Jakost luci: <span id="jak_miza"></span></p>
 		
 	
 	<script>
-	var slider = document.getElementById("MIZAA");
+	var slider = document.getElementById("miza");
 	var output = document.getElementById("jak_miza");
 	output.innerHTML = slider.value;
 	
@@ -52,12 +46,12 @@
 	}
 	</script>
 	
-	<p  style="text-align:center;"><b>TABLA:</b><input type="range" min="0" max="15" value="7" class="slider" id="TABLA"></p>
+	<p  style="text-align:center;"><b>TABLA:</b><input type="range" min="0" max="15" value="7" class="slider" id="tabla"></p>
 	<p style="text-align:center;">Jakost luci: <span id="jak_tabla"></span></p>
 		
 	
 	<script>
-	var slider = document.getElementById("TABLA");
+	var slider = document.getElementById("tabla");
 	var tab = document.getElementById("jak_tabla");
 	tab.innerHTML = slider.value;
 	
@@ -72,7 +66,7 @@
 			$(".led").click(function(){
 				var p = $(this).attr('id'); // get id value (i.e. pin13, pin12, or pin11)
 				// send HTTP GET request to the IP address with the parameter "pin" and value "p", then execute the function
-				$.get("http://164.8.114.22:80/", {p}); // execute get request
+				$.get("http://192.168.4.1:80/", {p}); // execute get request
 			});
 		});
 		
@@ -82,20 +76,10 @@
 				var p = $(this).attr('id'); // get id value (i.e. pin13, pin12, or pin11)
 				var x = this .value;
 				// send HTTP GET request to the IP address with the parameter "pin" and value "p", then execute the function
-				$.get("http://164.8.114.22:80/", {p,x}); // execute get request
+				$.get("http://192.168.4.1:80/", {p,x}); // execute get request
 			});
 		});
-		
-       /* under construction////////////////////////////////////////////////////////////////////////////////////////////////////
-		$(document).ready(function(){
-			$(".entry").click(function(){
-				var p = $(this).attr('id'); // get id value (i.e. pin13, pin12, or pin11)
-				
-				// send HTTP GET request to the IP address with the parameter "pin" and value "p", then execute the function
-				$.get("http://164.8.114.22:80/", {p}); // execute get request
-			});
-		});
-	*/	
+	
 	</script>
 	
 	</body>
