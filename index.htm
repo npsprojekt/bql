@@ -1,43 +1,77 @@
 <html>
 	<head>
 		<title>BQ_LAB control</title>
+		<style>
+.led {
+  background-color:rgb(0, 81, 222); 
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+</style>
 	</head>
-	<body>
-	<h2 style="text-align:center;">Platno:</h2>
+	
+	<body style="background-color:rgb(195, 222, 255);">
+	<h2 style="text-align:center;background-color:rgb(171, 196, 233);"><font face = "calibri" size = "6">Platno:</font></h2>
 	<p  style="text-align:center;">
-	<button id="P_GOR" class="led">GOR</button> 
-	<button id="P_DOL" class="led">DOL</button></p> 
+	<button id="PLATNO_GOR" class="led">GOR</button> 
+	<button id="PLATNO_DOL" class="led">DOL</button></p> 
 	
-	<h2 style="text-align:center;">Rolete:</h2>
-	<p  style="text-align:center;"><b>LEVO:</b>
+	<h2 style="text-align:center;background-color:rgb(171, 196, 233);"><font face = "calibri" size = "6">Rolete:</font></h2>
+	<p  style="text-align:center;"><font face = "calibri" size = "5"><b>LEVO: </b></font>
 	
-	<button id="RL_GOR" class="led">GOR</button> 
-	<button id="RL_DOL" class="led">DOL</button></p>
+	<button id="ROLETELGOR" class="led">GOR</button> 
+	<button id="ROLETELSRE" class="led">SREDINA</button>
+	<button id="ROLETELDOL" class="led">DOL</button></p>
 	
-	<p style="text-align:center;"><b>DESNO:</b>
+	<p style="text-align:center;"><font face = "calibri" size = "5"><b>DESNO: </b></font>
 	
-	<button id="RD_GOR" class="led">GOR</button>
-	<button id="RD_DOL" class="led">DOL</button></p> 
+	<button id="ROLETEDGOR" class="led">GOR</button>
+	<button id="ROLETEDSRE" class="led">SREDINA</button>
+	<button id="ROLETEDDOL" class="led">DOL</button></p> 
 	
 		
-	<h2 style="text-align:center;">Klima:</h2>
-	<form style="text-align:center;">Zeljenja temperatura:<br>
-    <input type="number"
-    name:"temp" min="10" max="50">
-
-    <input type="submit"
-	value="POSLJI">
-	</form>
+	<h2 style="text-align:center;background-color:rgb(171, 196, 233);"><font face = "calibri" size = "6">Klima:</font></h2>
 	
-	<h2 style="text-align:center;">Luci:</h2>
+	<p  style="text-align:center;">
+	<button id="KLIMAAA_ON" class="led">ON</button> 
+	<button id="KLIMAA_OFF" class="led">OFF</button></p> 
+	
+	<p style="text-align:center;"><input type="number" min="15" max="25" value="20" class="entry" id="KLIMA"></p>
+	<p style="text-align:center;"><font face = "calibri" size = "4">Temperatura: </font><span id="temp"></span></p>
+	
+	<script>
+  
+	var entry = document.getElementById("KLIMA");
+	var temperatura = document.getElementById("temp");
+	temperatura.innerHTML = entry.value;
+	
+	entry.oninput = function() {
+	temperatura.innerHTML = this .value;
+	} 
+    
+	</script> 
+
+	<!-- under construction//////////////////////////////////////-->
+	
+	<!-- ///////////////////////////////////////////////////// -->
+		
+	<h2 style="text-align:center;background-color:rgb(171, 196, 233);"><font face = "calibri" size = "6">Luci:</font></h2>
 
 		
-	<p  style="text-align:center;"><b>MIZA:</b><input type="range" min="0" max="15" value="7" class="slider" id="miza"></p>
-	<p style="text-align:center;">Jakost luci: <span id="jak_miza"></span></p>
+	<p style="text-align:center;"><font face = "calibri" size = "5"><b>MIZA: </b></font><input type="range" min="10" max="25" value="17" class="slider" id="MIZAA"></p>
+	<p style="text-align:center;"><font face = "calibri" size = "4">Jakost luci: </font><span id="jak_miza"></span></p>
 		
 	
 	<script>
-	var slider = document.getElementById("miza");
+	var slider = document.getElementById("MIZAA");
 	var output = document.getElementById("jak_miza");
 	output.innerHTML = slider.value;
 	
@@ -46,12 +80,12 @@
 	}
 	</script>
 	
-	<p  style="text-align:center;"><b>TABLA:</b><input type="range" min="0" max="15" value="7" class="slider" id="tabla"></p>
-	<p style="text-align:center;">Jakost luci: <span id="jak_tabla"></span></p>
+	<p  style="text-align:center;"><font face = "calibri" size = "5"><b>TABLA: </b></font><input type="range" min="10" max="25" value="17" class="slider" id="TABLA"></p>
+	<p style="text-align:center;"><font face = "calibri" size = "4">Jakost luci: </font><span id="jak_tabla"></span></p>
 		
 	
 	<script>
-	var slider = document.getElementById("tabla");
+	var slider = document.getElementById("TABLA");
 	var tab = document.getElementById("jak_tabla");
 	tab.innerHTML = slider.value;
 	
@@ -64,22 +98,32 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$(".led").click(function(){
-				var p = $(this).attr('id'); // get id value (i.e. pin13, pin12, or pin11)
+				var g = $(this).attr('id'); // get id value (i.e. pin13, pin12, or pin11)
 				// send HTTP GET request to the IP address with the parameter "pin" and value "p", then execute the function
-				$.get("http://164.8.114.22:80/", {p}); // execute get request
+				$.get("http://192.168.4.1:80/", {g}); // execute get request
 			});
 		});
 		
 		
 		$(document).ready(function(){
 			$(".slider").click(function(){
-				var p = $(this).attr('id'); // get id value (i.e. pin13, pin12, or pin11)
+				var d = $(this).attr('id'); // get id value (i.e. pin13, pin12, or pin11)
 				var x = this .value;
 				// send HTTP GET request to the IP address with the parameter "pin" and value "p", then execute the function
-				$.get("http://164.8.114.22:80/", {p,x}); // execute get request
+				$.get("http://192.168.4.1:80/", {d,x}); // execute get request
 			});
 		});
-	
+		
+       // under construction////////////////////////////////////////////////////////////////////////////////////////////////////
+		$(document).ready(function(){
+			$(".entry").click(function(){
+				var v = $(this).attr('id'); // get id value (i.e. pin13, pin12, or pin11)
+				var y = this .value; //  izmijenjeno drugi put!
+				// send HTTP GET request to the IP address with the parameter "pin" and value "p", then execute the function
+				$.get("http://192.168.4.1:80/", {v,y}); // execute get request
+			});
+		});
+		
 	</script>
 	
 	</body>
