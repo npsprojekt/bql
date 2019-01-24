@@ -100,7 +100,7 @@
 			$(".led").click(function(){
 				var g = $(this).attr('id'); // get id value (i.e. pin13, pin12, or pin11)
 				// send HTTP GET request to the IP address with the parameter "pin" and value "p", then execute the function
-				$.get("http://164.8.114.17:80/", {g}); // execute get request
+				$.get("http://192.168.4.1:80/", {g}); // execute get request
 			});
 		});
 		
@@ -110,7 +110,7 @@
 				var d = $(this).attr('id'); // get id value (i.e. pin13, pin12, or pin11)
 				var x = this .value;
 				// send HTTP GET request to the IP address with the parameter "pin" and value "p", then execute the function
-				$.get("http://164.8.114.17:80/", {d,x}); // execute get request
+				$.get("http://192.168.4.1:80/", {d,x}); // execute get request
 			});
 		});
 		
