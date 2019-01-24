@@ -21,31 +21,102 @@
 	<body style="background-color:rgb(195, 222, 255);">
 	<h2 style="text-align:center;background-color:rgb(171, 196, 233);"><font face = "calibri" size = "6">Platno:</font></h2>
 	<p  style="text-align:center;">
-	<button id="PLATNO_GOR" class="led">GOR</button> 
-	<button id="PLATNO_DOL" class="led">DOL</button></p> 
+	<button id="PLATNO_GOR" class="led" onclick="Platno_g()">GOR</button> 
+	<button id="PLATNO_DOL" class="led" onclick="Platno_d()">DOL</button></p> 
+	
+	<p style="text-align:center;"><font face = "calibri" size = "5" id="platno"></p>
+	
+
+	<script>
+	function Platno_g() {
+	document.getElementById("platno").innerHTML = "Platno je gor.";
+	}
+	</script>
+	
+	<script>
+	function Platno_d() {
+	document.getElementById("platno").innerHTML = "Platno je dol.";
+	}
+	</script>
 	
 	<h2 style="text-align:center;background-color:rgb(171, 196, 233);"><font face = "calibri" size = "6">Rolete:</font></h2>
 	<p  style="text-align:center;"><font face = "calibri" size = "5"><b>LEVO: </b></font>
 	
-	<button id="ROLETELGOR" class="led">GOR</button> 
-	<button id="ROLETELSRE" class="led">SREDINA</button>
-	<button id="ROLETELDOL" class="led">DOL</button></p>
+	<button id="ROLETELGOR" class="led" onclick="RoleteLg()">GOR</button> 
+	<button id="ROLETELSRE" class="led" onclick="RoleteLs()">SREDINA</button>
+	<button id="ROLETELDOL" class="led" onclick="RoleteLd()">DOL</button></p>
+	
+	<p style="text-align:center;"><font face = "calibri" size = "5" id="rolete1"></p>
+	
+
+	<script>
+	function RoleteLg() {
+	document.getElementById("rolete1").innerHTML = "Leva roleta je gor.";
+	}
+	</script>
+	
+	<script>
+	function RoleteLs() {
+	document.getElementById("rolete1").innerHTML = "Leva roleta je v sredini.";
+	}
+	</script>
+	
+	<script>
+	function RoleteLd() {
+	document.getElementById("rolete1").innerHTML = "Leva roleta je dol.";
+	}
+	</script>
 	
 	<p style="text-align:center;"><font face = "calibri" size = "5"><b>DESNO: </b></font>
 	
-	<button id="ROLETEDGOR" class="led">GOR</button>
-	<button id="ROLETEDSRE" class="led">SREDINA</button>
-	<button id="ROLETEDDOL" class="led">DOL</button></p> 
+	<button id="ROLETEDGOR" class="led" onclick="RoleteDg()">GOR</button>
+	<button id="ROLETEDSRE" class="led" onclick="RoleteDs()">SREDINA</button>
+	<button id="ROLETEDDOL" class="led" onclick="RoleteDd()">DOL</button></p> 
+	
+	<p style="text-align:center;"><font face = "calibri" size = "5" id="rolete2"></p>
+	
+
+	<script>
+	function RoleteDg() {
+	document.getElementById("rolete2").innerHTML = "Desna roleta je gor.";
+	}
+	</script>
+	
+	<script>
+	function RoleteDs() {
+	document.getElementById("rolete2").innerHTML = "Desna roleta je v sredini.";
+	}
+	</script>
+	
+	<script>
+	function RoleteDd() {
+	document.getElementById("rolete2").innerHTML = "Desna roleta je dol.";
+	}
+	</script>
 	
 		
 	<h2 style="text-align:center;background-color:rgb(171, 196, 233);"><font face = "calibri" size = "6">Klima:</font></h2>
 	
 	<p  style="text-align:center;">
-	<button id="KLIMAAA_ON" class="led">ON</button> 
-	<button id="KLIMAA_OFF" class="led">OFF</button></p> 
+	<button id="KLIMAAA_ON" class="led" onclick="KlimaON()">ON</button> 
+	<button id="KLIMAA_OFF" class="led" onclick="KlimaOFF()">OFF</button></p> 
 	
+	<p style="text-align:center;"><font face = "calibri" size = "5" id="klima"></p>
+	
+	<script>
+	function KlimaON() {
+	document.getElementById("klima").innerHTML = "Klima je ON.";
+	}
+	</script>
+	
+	<script>
+	function KlimaOFF() {
+	document.getElementById("klima").innerHTML = "Klima je OFF.";
+	}
+	</script>
+		
 	<p style="text-align:center;"><input type="number" min="15" max="25" value="20" class="entry" id="KLIMA"></p>
-	<p style="text-align:center;"><font face = "calibri" size = "4">Temperatura: </font><span id="temp"></span></p>
+	<p style="text-align:center;"><font face = "calibri" size = "4">Želena temperatura: </font><span id="temp"></span></p>
 	
 	<script>
   
@@ -58,7 +129,8 @@
 	} 
     
 	</script> 
-		
+
+			
 	<h2 style="text-align:center;background-color:rgb(171, 196, 233);"><font face = "calibri" size = "6">Luci:</font></h2>
 
 		
@@ -96,7 +168,7 @@
 			$(".led").click(function(){
 				var g = $(this).attr('id'); // get id value (i.e. pin13, pin12, or pin11)
 				// send HTTP GET request to the IP address with the parameter "pin" and value "p", then execute the function
-				$.get("http://164.8.114.17:80/", {g}); // execute get request
+				$.get("http://192.168.4.1:80/", {g}); // execute get request
 			});
 		});
 		
@@ -106,7 +178,7 @@
 				var d = $(this).attr('id'); // get id value (i.e. pin13, pin12, or pin11)
 				var x = this .value;
 				// send HTTP GET request to the IP address with the parameter "pin" and value "p", then execute the function
-				$.get("http://164.8.114.17:80/", {d,x}); // execute get request
+				$.get("http://192.168.4.1:80/", {d,x}); // execute get request
 			});
 		});
 		
@@ -116,7 +188,7 @@
 				var v = $(this).attr('id'); // get id value (i.e. pin13, pin12, or pin11)
 				var y = this .value; //  izmijenjeno drugi put!
 				// send HTTP GET request to the IP address with the parameter "pin" and value "p", then execute the function
-				$.get("http://164.8.114.17:80/", {v,y}); // execute get request
+				$.get("http://192.168.4.1:80/", {v,y}); // execute get request
 			});
 		});
 		
