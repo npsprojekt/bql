@@ -166,29 +166,25 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$(".led").click(function(){
-				var g = $(this).attr('id'); // get id value (i.e. pin13, pin12, or pin11)
-				// send HTTP GET request to the IP address with the parameter "pin" and value "p", then execute the function
-				$.get("http://164.8.114.17:80/", {g}); // execute get request
+				var g = $(this).attr('id'); 
+				$.get("http://164.8.114.17:80/", {g}); 
 			});
 		});
 		
 		
 		$(document).ready(function(){
 			$(".slider").click(function(){
-				var d = $(this).attr('id'); // get id value (i.e. pin13, pin12, or pin11)
+				var d = $(this).attr('id'); 
 				var x = this .value;
-				// send HTTP GET request to the IP address with the parameter "pin" and value "p", then execute the function
-				$.get("http://164.8.114.17:80/", {d,x}); // execute get request
+				$.get("http://164.8.114.17:80/", {d,x}); 
 			});
 		});
 		
-       // under construction////////////////////////////////////////////////////////////////////////////////////////////////////
-		$(document).ready(function(){
+      		$(document).ready(function(){
 			$(".entry").click(function(){
-				var v = $(this).attr('id'); // get id value (i.e. pin13, pin12, or pin11)
-				var y = this .value; //  izmijenjeno drugi put!
-				// send HTTP GET request to the IP address with the parameter "pin" and value "p", then execute the function
-				$.get("http://164.8.114.17:80/", {v,y}); // execute get request
+				var v = $(this).attr('id'); 
+				var y = this .value; 
+				$.get("http://164.8.114.17:80/", {v,y}); 
 			});
 		});
 		
